@@ -1,0 +1,6 @@
+<odoo>
+ <menuitem id="primetech_whatsapp_menu_root" name="WhatsApp" sequence="40" groups="primetech_whatsapp_connect.group_primetech_whatsapp_user"/>
+ <menuitem id="primetech_whatsapp_menu_conversations" name="Conversations" parent="primetech_whatsapp_menu_root" action="primetech_whatsapp_conversation_action" sequence="10" groups="primetech_whatsapp_connect.group_primetech_whatsapp_user"/>
+ <menuitem id="primetech_whatsapp_menu_campaigns" name="Envois en masse" parent="primetech_whatsapp_menu_root" action="primetech_whatsapp_campaign_action" sequence="20" groups="primetech_whatsapp_connect.group_primetech_whatsapp_user"/>
+ <menuitem id="primetech_whatsapp_menu_accounts" name="Configuration" parent="primetech_whatsapp_menu_root" action="primetech_whatsapp_account_action" sequence="90" groups="primetech_whatsapp_connect.group_primetech_whatsapp_manager,base.group_system"/>
+</odoo>

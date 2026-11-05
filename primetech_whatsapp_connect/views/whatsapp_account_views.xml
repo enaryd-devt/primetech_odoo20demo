@@ -1,0 +1,79 @@
+<odoo>
+    <record id="primetech_whatsapp_account_view_list" model="ir.ui.view">
+        <field name="name">primetech.whatsapp.account.list</field>
+        <field name="model">primetech.whatsapp.account</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="display_phone_number"/>
+                <field name="phone_number_id"/>
+                <field name="company_id"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="primetech_whatsapp_account_view_form" model="ir.ui.view">
+        <field name="name">primetech.whatsapp.account.form</field>
+        <field name="model">primetech.whatsapp.account</field>
+        <field name="arch" type="xml">
+            <form string="Compte WhatsApp">
+                <header>
+                    <field name="active" widget="boolean_button" options="{'terminology': 'archive'}"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="ex. WhatsApp commercial"/></h1>
+                        <div class="text-muted">
+                            Configurez votre numéro WhatsApp Business et sa connexion à Meta.
+                        </div>
+                    </div>
+
+                    <group>
+                        <group string="Informations du compte">
+                            <field name="company_id"/>
+                            <field name="display_phone_number" placeholder="ex. +237 6xx xxx xxx"/>
+                        </group>
+                        <group string="État">
+                            <field name="active"/>
+                            <field name="api_version"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Connexion Meta" name="meta_connection">
+                            <group string="WhatsApp Cloud API">
+                                <field name="phone_number_id"/>
+                                <field name="business_account_id"/>
+                                <field name="access_token" password="True"/>
+                            </group>
+                            <div class="alert alert-info" role="status">
+                                Utilisez un jeton d'accès permanent généré dans Meta Business Suite.
+                            </div>
+                        </page>
+                        <page string="Webhook" name="webhook">
+                            <group string="Réception des messages">
+                                <field name="verify_token" password="True"/>
+                                <field name="webhook_url" widget="url"/>
+                                <button name="action_generate_webhook_url" type="object" string="Générer l'URL de rappel" class="btn-link" icon="fa-link" groups="primetech_whatsapp_connect.group_primetech_whatsapp_manager"/>
+                            </group>
+                            <div class="alert alert-info" role="status">
+                                Générez l'URL puis copiez-la dans Meta. Meta exige une adresse publique en HTTPS.
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <button name="action_test_connection" type="object" string="Tester la connexion" class="btn-link" icon="fa-plug" groups="primetech_whatsapp_connect.group_primetech_whatsapp_manager"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="primetech_whatsapp_account_action" model="ir.actions.act_window">
+        <field name="name">Comptes WhatsApp</field>
+        <field name="res_model">primetech.whatsapp.account</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

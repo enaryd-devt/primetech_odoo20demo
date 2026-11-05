@@ -1,0 +1,22 @@
+{
+    "name": "PrimeTech WhatsApp Connect",
+    "summary": "Conversations WhatsApp, documents, planification et campagnes",
+    "version": "20.0.1.0.0",
+    "category": "Discuss",
+    "author": "PrimeTech",
+    "license": "LGPL-3",
+    "images": ["static/description/icon.png"],
+    "depends": ["mail", "contacts", "sale_management", "account", "stock"],
+    "data": [
+        "security/whatsapp_security.xml",
+        "security/ir.access.csv",
+        "data/ir_cron.xml",
+        "views/whatsapp_account_views.xml",
+        "views/whatsapp_conversation_views.xml",
+        "views/whatsapp_campaign_views.xml",
+        "wizard/whatsapp_send_document_views.xml",
+        "views/whatsapp_menu.xml",
+    ],
+    "application": True,
+    "installable": True,
+}
