@@ -15,6 +15,7 @@ class WhatsAppAccount(models.Model):
 
     name = fields.Char(required=True)
     active = fields.Boolean(default=True)
+    is_active = fields.Boolean(string="Actif", related="active", readonly=False)
     company_id = fields.Many2one("res.company", default=lambda self: self.env.company, required=True)
     phone_number_id = fields.Char(required=True, help="ID du numéro de téléphone fourni par Meta.")
     business_account_id = fields.Char(string="ID compte WhatsApp Business")
@@ -85,9 +86,10 @@ class WhatsAppAccount(models.Model):
         if not base_url:
             raise UserError(_("Impossible de déterminer l'adresse du serveur Odoo."))
         self.webhook_url = "%s/primetech_whatsapp/webhook" % base_url.rstrip("/")
+        # ``reload`` makes the URL and its copy icon immediately available.
         return {
             "type": "ir.actions.client",
-            "tag": "display_notification",
+            "tag": "reload",
             "params": {
                 "title": _("URL de rappel générée"),
                 "message": _("Copiez cette URL dans la configuration Webhook de Meta."),
